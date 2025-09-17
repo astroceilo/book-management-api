@@ -1,5 +1,5 @@
 # Gunakan PHP + Apache
-FROM php:8.2-apache
+FROM php:8.3-apache
 
 # Install dependencies sistem yang diperlukan
 RUN apt-get update && apt-get install -y \
@@ -18,7 +18,7 @@ WORKDIR /var/www/html
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
 # Install dependency Laravel
-RUN composer install --no-dev --optimize-autoloader
+# RUN composer install --no-dev --optimize-autoloader
 
 # Set document root ke folder public
 RUN sed -i 's!/var/www/html!/var/www/html/public!g' /etc/apache2/sites-available/000-default.conf
