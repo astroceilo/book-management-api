@@ -1,8 +1,12 @@
 # Gunakan PHP + Apache
 FROM php:8.2-apache
 
-# Install ekstensi yang dibutuhkan Laravel
-RUN docker-php-ext-install pdo pdo_mysql
+# Install dependencies sistem yang diperlukan
+RUN apt-get update && apt-get install -y \
+    git \
+    unzip \
+    libzip-dev \
+    && docker-php-ext-install pdo pdo_mysql zip
 
 # Copy source code ke container
 COPY . /var/www/html
